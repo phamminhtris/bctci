@@ -35,6 +35,16 @@ struct BinarySearchTests {
             sorted: [-5, -4, -1, 4, 6, 6, 7],
             unsorted: [-3, 7, 18, 4, 6],
             res: [1, 3]
+        ),
+        TwoArrayTwoSumTestCase(
+            sorted: [-1, 0, 1],
+            unsorted: [4, 5],
+            res: [-1, -1]
+        ),
+        TwoArrayTwoSumTestCase(
+            sorted: [-1],
+            unsorted: [1, 0],
+            res: [0, 0]
         )
     ])
     func twoArrayTwoSum(input: TwoArrayTwoSumTestCase) {
