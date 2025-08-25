@@ -21,6 +21,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		11722F6C2E520E5200716C7C /* BCTCI.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = BCTCI.xctestplan; sourceTree = "<group>"; };
 		11AAAF422DC30342001B4E6A /* BCTCI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BCTCI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		11AAAF4D2DC30342001B4E6A /* BCTCITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BCTCITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -60,6 +61,7 @@
 		11AAAF382DC30342001B4E6A = {
 			isa = PBXGroup;
 			children = (
+				11722F6C2E520E5200716C7C /* BCTCI.xctestplan */,
 				11AAAF442DC30342001B4E6A /* BCTCI */,
 				11AAAF512DC30342001B4E6A /* BCTCITests */,
 				11AAAF432DC30342001B4E6A /* Products */,

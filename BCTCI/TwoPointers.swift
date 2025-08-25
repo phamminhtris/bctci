@@ -97,3 +97,9 @@ func missingNumbersInRange(_ arr: [Int], low: Int, high: Int) -> [Int] {
 
     return res
 }
+
+// Problem 27.7
+func intervalIntersection(_ arr1: [Int], _ arr2: [Int]) -> [Int] {
+    []
+}
+

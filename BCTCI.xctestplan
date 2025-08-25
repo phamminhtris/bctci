@@ -1,0 +1,25 @@
+{
+  "configurations" : [
+    {
+      "id" : "7734473E-5D64-4548-A5C0-1830A351A56A",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "performanceAntipatternCheckerEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:BCTCI.xcodeproj",
+        "identifier" : "11AAAF4C2DC30342001B4E6A",
+        "name" : "BCTCITests"
+      }
+    }
+  ],
+  "version" : 1
+}
