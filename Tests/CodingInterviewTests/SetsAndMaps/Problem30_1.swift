@@ -40,6 +40,42 @@ struct Problem30_1Tests {
 
             TestInput(inputs: [], expected: ""),
             TestInput(inputs: [("1.1.1.1", "alice")], expected: ""),
+            
+            // Multiple occurrences (3+) - should return first duplicate
+            TestInput(
+                inputs: [
+                    ("1.1.1.1", "alice"), ("2.2.2.2", "bob"),
+                    ("3.3.3.3", "alice"), ("4.4.4.4", "alice"),
+                ],
+                expected: "3.3.3.3"
+            ),
+            
+            // Case sensitivity - "Alice" and "alice" should be different
+            TestInput(
+                inputs: [("1.1.1.1", "Alice"), ("2.2.2.2", "alice")],
+                expected: ""
+            ),
+            
+            // Special characters in username
+            TestInput(
+                inputs: [("1.1.1.1", "user@123"), ("2.2.2.2", "user@123")],
+                expected: "2.2.2.2"
+            ),
+            
+            // Minimum username length (1 character)
+            TestInput(
+                inputs: [("1.1.1.1", "a"), ("2.2.2.2", "a")],
+                expected: "2.2.2.2"
+            ),
+            
+            // Maximum username length (30 characters)
+            TestInput(
+                inputs: [
+                    ("1.1.1.1", "abcdefghijklmnopqrstuvwxyz1234"),
+                    ("2.2.2.2", "abcdefghijklmnopqrstuvwxyz1234"),
+                ],
+                expected: "2.2.2.2"
+            ),
         ]
     )
     func testSharedUsername(testCase: TestInput) {
