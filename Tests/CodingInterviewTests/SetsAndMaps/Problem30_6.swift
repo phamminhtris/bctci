@@ -15,7 +15,7 @@ struct Problem30_6Tests {
     @Test("test find all squares", arguments: [
         TestCase(
             input: [4, 10, 3, 100, 5, 2, 10000],
-            expected: [[5, 0], [1, 3], [3, 6]]
+            expected: [[1, 3], [3, 6], [5, 0]]
         ),
         TestCase(
             input: [1],
