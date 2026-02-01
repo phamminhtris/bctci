@@ -12,6 +12,9 @@ Input: ["apple", "Banana", "3", "Cherry", "42", "GRAPE", "10"]
 Output: ["GRAPE", "Cherry", "Banana", "apple", "42", "3", "10"]
 */
 
+let question1Input = ["apple", "Banana", "3", "Cherry", "42", "GRAPE", "10"]
+let question1Output = question1Input.sorted(by: { $0.lowercased() > $1.lowercased() })
+
 /**
 QUESTION 2
 
@@ -24,6 +27,9 @@ Input: [[3,9], [1,4], [4,7], [2,3]]
 Output: [[2,3], [1,4], [4,7], [3,9]]
 */
 
+let intervals = [(3, 9), (1, 4), (4, 7), (2, 3)]
+let sortedInterval = intervals.sorted(by: { $0.1 < $1.1 })
+print(sortedInterval)
 /**
 QUESTION 3
 
@@ -35,7 +41,7 @@ class Card:
     def __init__(self, value, suit):
         self.value = value  # A number between 1 and 13.
         self.suit = suit   # 'clubs', 'hearts', 'spades', or 'diamonds'
-
+ 
 Sort the cards by value in ascending order.
 	•	Aces are represented by the value 1
 	•	Jacks, Queens, and Kings are represented by 11, 12, and 13, respectively
@@ -49,6 +55,49 @@ deck = [{8, 'hearts'}, {8, 'clubs'}, {3, 'clubs'}, {3, 'hearts'}]
 Output:
 [{3, 'clubs'}, {3, 'hearts'}, {8, 'clubs'}, {8, 'hearts'}]
 */
+
+struct Card {
+    let value: Int
+    let suit: Suit
+    
+    enum Suit: String {
+        case clubs, hearts, spades, diamonds
+    }
+}
+
+extension Card: CustomDebugStringConvertible {
+    var debugDescription: String {
+        "Card(value: \(value), suit: \(suit.rawValue))"
+    }
+}
+
+
+
+let questions3Input: [Card] = [Card(value: 8, suit: .hearts),
+                               Card(value: 8, suit: .clubs),
+                               Card(value: 3, suit: .clubs),
+                               Card(value: 3, suit: .hearts)]
+
+extension Card.Suit {
+    var value: Int {
+        switch self {
+        case .clubs: return 0
+        case .hearts: return 1
+        case .spades: return 2
+        case .diamonds: return 3
+        }
+    }
+}
+
+let questions3Output: [Card] = questions3Input.sorted {
+    if $0.value == $1.value {
+        return $0.suit.value < $1.suit.value
+    } else {
+        return  $0.value < $1.value
+    }
+}
+
+print(questions3Output)
 
 /**
 QUESTION 4
