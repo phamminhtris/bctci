@@ -24,6 +24,10 @@ These instructions apply to everything under `/Users/tri/Developer/CodingIntervi
 
 ## Testing
 - Add or update targeted tests for behavior changes.
+- For test design, derive cases from the problem prompt/requirements (not implementation details) unless explicitly requested.
+- Prefer parameterized tests when multiple scenarios share the same assertion pattern.
+- Do not force all scenarios into one parameterized test; split into multiple parameterized tests when behaviors differ.
+- Include edge cases that still satisfy the stated problem constraints.
 - Prefer running scoped tests first:
   - `swift test --filter Problem32_2Tests`
 - Run full suite when practical:
