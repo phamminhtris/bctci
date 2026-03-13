@@ -22,6 +22,16 @@ contains(v):
     Return the first node with value v, if any, or null otherwise.
 */
 
+final class ListNode<T> {
+    var value: T
+    var next: ListNode<T>?
+
+    init(_ value: T, next: ListNode<T>? = nil) {
+        self.value = value
+        self.next = next
+    }
+}
+
 final class SinglyLinkList<T: Equatable> {
     private var head: ListNode<T>?
     private(set) var size: Int = 0
