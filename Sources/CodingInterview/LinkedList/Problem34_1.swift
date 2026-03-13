@@ -34,23 +34,26 @@ final class ListNode<T> {
 
 final class SinglyLinkList<T: Equatable> {
     private var head: ListNode<T>?
+    private var tail: ListNode<T>?
     private(set) var size: Int = 0
     init() {}
 
     func pushFront(_ value: T) {
         head = ListNode(value, next: head)
+        if tail == nil {
+            tail = head
+        }
         size += 1
     }
 
     func pushBack(_ value: T) {
-        if head != nil {
-            var curr: ListNode<T>? = head
-            while curr?.next != nil {
-                curr = curr?.next
-            }
-            curr?.next = ListNode(value)
+        let node = ListNode(value)
+        if let tail {
+            tail.next = node
+            self.tail = node
         } else {
-            head = ListNode(value)
+            head = node
+            tail = node
         }
         size += 1
     }
@@ -60,6 +63,7 @@ final class SinglyLinkList<T: Equatable> {
         if size == 1 {
             let ret = head?.value
             head = nil
+            tail = nil
             size -= 1
             return ret
         }
@@ -71,6 +75,7 @@ final class SinglyLinkList<T: Equatable> {
 
         let val = curr?.next?.value
         curr?.next = nil
+        tail = curr
         size -= 1
 
         return val

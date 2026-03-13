@@ -58,6 +58,23 @@ struct Problem34_1Tests {
         #expect(list.size == 0)
     }
 
+    @Test("Problem 34.1 - pushFront and pushBack maintain correct end element sequence")
+    func testPushFrontAndPushBack() {
+        let list = SinglyLinkList<Int>()
+
+        list.pushFront(1)
+        list.pushBack(2)
+        list.pushFront(3)
+
+        #expect(list.size == 3)
+        #expect(list.popBack() == 2)
+        #expect(list.size == 2)
+        #expect(list.popBack() == 1)
+        #expect(list.size == 1)
+        #expect(list.popBack() == 3)
+        #expect(list.size == 0)
+    }
+
     struct ContainsCase {
         let values: [Int]
         let target: Int
