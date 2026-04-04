@@ -45,14 +45,14 @@ struct Problem35_1Tests {
         switch scenario {
         case .promptExample:
             /*
-             Depth
-               0             7
-                            / \
-               1         (1)   3
-                         / \    \
-               2       (2)  8   (2)
-                       / \      / \
-               3      4 (3)   (3) (3)
+             Level
+             L0            7
+                          / \
+             L1        (1)   3
+                       / \    \
+             L2      (2)  8   (2)
+                     / \      / \
+             L3     4 (3)   (3) (3)
              Best aligned chain length = 3
              */
             let node4 = TreeNode(val: 4)
@@ -68,11 +68,11 @@ struct Problem35_1Tests {
 
         case .noAlignedNodes:
             /*
-               5
-              / \
-             9   4
-            /
-           6
+             L0        5
+                      / \
+             L1      9   4
+                    /
+             L2    6
              No node matches its depth.
              */
             let left = TreeNode(val: 9, left: TreeNode(val: 6))
@@ -81,13 +81,13 @@ struct Problem35_1Tests {
 
         case .chainStartsBelowRoot:
             /*
-               9
-              / \
-            (1) 10
-            /
-          (2)
-          /
-        (3)
+             L0         9
+                       / \
+             L1      (1) 10
+                     /
+             L2    (2)
+                   /
+             L3  (3)
              Root is misaligned; best chain starts at depth 1.
              */
             let node3 = TreeNode(val: 3)
@@ -97,15 +97,15 @@ struct Problem35_1Tests {
 
         case .misalignedNodeBreaksChain:
             /*
-            (0)
-             /
-           (1)
-            /
-            9   <- depth 2 mismatch breaks chain
-            /
-          (3)
-          /
-        (4)
+             L0      (0)
+                     /
+             L1    (1)
+                   /
+             L2    9   <- mismatch breaks chain
+                   /
+             L3  (3)
+                 /
+             L4 (4)
              Longest contiguous aligned chain length = 2.
              */
             let node4 = TreeNode(val: 4)
@@ -116,21 +116,21 @@ struct Problem35_1Tests {
 
         case .singleAlignedRoot:
             /*
-            (0)
+             L0  (0)
              */
             return TreeNode(val: 0)
 
         case .allAlignedOnRightSpine:
             /*
-            (0)
-              \
-              (1)
-                \
-                (2)
-                  \
-                  (3)
-                    \
-                    (4)
+             L0  (0)
+                   \
+             L1    (1)
+                     \
+             L2      (2)
+                       \
+             L3        (3)
+                           \
+             L4            (4)
              */
             let node4 = TreeNode(val: 4)
             let node3 = TreeNode(val: 3, right: node4)
@@ -140,15 +140,15 @@ struct Problem35_1Tests {
 
         case .deepestOfCompetingChains:
             /*
-                   8
-                 /   \
-               (1)   (1)
-               /       \
-             (2)       (2)
-             /           \
-           (3)            9
-           /
-         (4)
+             L0            8
+                         /   \
+             L1       (1)   (1)
+                      /       \
+             L2     (2)       (2)
+                    /           \
+             L3   (3)            9
+                  /
+             L4 (4)
              Left chain length 4 beats right chain length 2.
              */
             let left4 = TreeNode(val: 4)
@@ -162,13 +162,13 @@ struct Problem35_1Tests {
 
         case .singleAlignedLeafOnly:
             /*
-                  9
-                 /
-                8
-               /
-              7
-             /
-           (3)
+             L0         9
+                       /
+             L1       8
+                     /
+             L2     7
+                   /
+             L3   (3)
              Only one aligned node exists, so best length is 1.
              */
             let leaf = TreeNode(val: 3)
@@ -178,15 +178,14 @@ struct Problem35_1Tests {
 
         case .twoEqualBestChains:
             /*
-                   7
-                 /   \
-               (1)   (1)
-               /       \
-             (2)       (2)
-             Both best chains have length 2 from depth 1 to depth 2,
-             plus node at depth 3 added on left and right for length 3.
-                   /       \
-                 (3)       (3)
+             L0            7
+                         /   \
+             L1       (1)   (1)
+                      /       \
+             L2     (2)       (2)
+                    /           \
+             L3   (3)           (3)
+             Two equal best chains, each length 3.
              */
             let left = TreeNode(val: 1, left: TreeNode(val: 2, left: TreeNode(val: 3)))
             let right = TreeNode(val: 1, right: TreeNode(val: 2, right: TreeNode(val: 3)))
@@ -194,11 +193,11 @@ struct Problem35_1Tests {
 
         case .rootAlignedChildrenMisaligned:
             /*
-            (0)
-            / \
-           9   9
-              /
-             8
+             L0    (0)
+                   / \
+             L1   9   9
+                    /
+             L2    8
              Root is aligned but no aligned child at depth 1.
              */
             let right = TreeNode(val: 9, left: TreeNode(val: 8))
