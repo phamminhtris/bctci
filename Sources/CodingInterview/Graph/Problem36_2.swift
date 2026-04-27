@@ -55,37 +55,35 @@ extension AdjGraph {
         precondition((0..<outerList.count).contains(node2))
 
         var predecessors = [Int: Int]()
-        func visit(_ node: Int, prev: Int) -> Bool {
-            if predecessors[node] != nil {
-                return false
-            }
-            predecessors[node] = prev
 
-            if node == node2 {
-                return true
-            }
-            for nbr in outerList[node] {
-                if visit(nbr, prev: node) {
-                    return true
+        func visit(node: Int, from parent: Int) {
+            if predecessors[node] == nil {
+                // not yet visited 
+                predecessors[node] = parent
+                for neighbor in outerList[node] {
+                    visit(node: neighbor, from: node)
                 }
             }
-
-            return false
         }
 
-        _ = visit(node1, prev: -1)
+        visit(node: node1, from: -1)
+
         if predecessors[node2] == nil {
             return []
         }
 
-        var result = Deque<Int>()
-        result.prepend(node2)
-        var prev = predecessors[node2] 
-        while let curr = prev, curr != -1 {
-            result.prepend(curr)
-            prev = predecessors[curr]
+        var results = Deque<Int>()
+        results.append(node2)
+        var prev = predecessors[node2]!
+        while true {
+            if prev == -1 {
+                break
+            } else {
+                results.prepend(prev)
+                prev = predecessors[prev]!
+            }
         }
 
-        return Array(result)
+        return Array(results)
     }
 }
