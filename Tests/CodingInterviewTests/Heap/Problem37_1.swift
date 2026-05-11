@@ -4,7 +4,7 @@ import Testing
 struct Problem37_1Tests {
     @Test("Problem 37.1 - empty heap returns nil and has zero size")
     func testEmptyHeap() {
-        let heap = Heap<Int>(isHigherPriority: <)
+        let heap = BinaryHeap<Int>(isHigherPriority: <)
 
         #expect(heap.size == 0)
         #expect(heap.top() == nil)
@@ -14,7 +14,7 @@ struct Problem37_1Tests {
 
     @Test("Problem 37.1 - min heap pops values in ascending order")
     func testMinHeapOrdering() {
-        let heap = Heap<Int>(isHigherPriority: <)
+        let heap = BinaryHeap<Int>(isHigherPriority: <)
 
         [5, 1, 9, 3, 7, 2].forEach { heap.push($0) }
 
@@ -27,7 +27,7 @@ struct Problem37_1Tests {
 
     @Test("Problem 37.1 - max heap pops values in descending order")
     func testMaxHeapOrdering() {
-        let heap = Heap<Int>(isHigherPriority: >)
+        let heap = BinaryHeap<Int>(isHigherPriority: >)
 
         [5, 1, 9, 3, 7, 2].forEach { heap.push($0) }
 
@@ -39,7 +39,7 @@ struct Problem37_1Tests {
 
     @Test("Problem 37.1 - max heap handles duplicates and negative values")
     func testMaxHeapWithDuplicatesAndNegativeValues() {
-        let heap = Heap<Int>(isHigherPriority: >)
+        let heap = BinaryHeap<Int>(isHigherPriority: >)
 
         [0, -10, 4, 4, -1, Int.min, Int.max].forEach { heap.push($0) }
 
@@ -50,7 +50,7 @@ struct Problem37_1Tests {
 
     @Test("Problem 37.1 - heap handles duplicate values")
     func testDuplicateValues() {
-        let heap = Heap<Int>(isHigherPriority: <)
+        let heap = BinaryHeap<Int>(isHigherPriority: <)
 
         [4, 1, 4, 2, 1].forEach { heap.push($0) }
 
@@ -59,7 +59,7 @@ struct Problem37_1Tests {
 
     @Test("Problem 37.1 - top does not remove the value")
     func testTopDoesNotMutate() {
-        let heap = Heap<Int>(isHigherPriority: <)
+        let heap = BinaryHeap<Int>(isHigherPriority: <)
 
         heap.push(3)
         heap.push(1)
@@ -73,7 +73,7 @@ struct Problem37_1Tests {
 
     @Test("Problem 37.1 - single element pop clears heap")
     func testSingleElement() {
-        let heap = Heap<Int>(isHigherPriority: <)
+        let heap = BinaryHeap<Int>(isHigherPriority: <)
 
         heap.push(42)
 
@@ -86,7 +86,7 @@ struct Problem37_1Tests {
 
     @Test("Problem 37.1 - heap can be reused after draining")
     func testPushAfterDraining() {
-        let heap = Heap<Int>(isHigherPriority: <)
+        let heap = BinaryHeap<Int>(isHigherPriority: <)
 
         [2, 1].forEach { heap.push($0) }
         #expect(popAll(from: heap) == [1, 2])
@@ -98,7 +98,7 @@ struct Problem37_1Tests {
 
     @Test("Problem 37.1 - interleaved push and pop preserves ordering")
     func testInterleavedOperations() {
-        let heap = Heap<Int>(isHigherPriority: <)
+        let heap = BinaryHeap<Int>(isHigherPriority: <)
 
         [10, 4, 8].forEach { heap.push($0) }
         #expect(heap.pop() == 4)
@@ -117,7 +117,7 @@ struct Problem37_1Tests {
 
     @Test("Problem 37.1 - min heap handles negative and extreme values")
     func testNegativeAndExtremeValues() {
-        let heap = Heap<Int>(isHigherPriority: <)
+        let heap = BinaryHeap<Int>(isHigherPriority: <)
 
         [0, -1, Int.max, Int.min, 5].forEach { heap.push($0) }
 
@@ -126,7 +126,7 @@ struct Problem37_1Tests {
 
     @Test("Problem 37.1 - heap supports other comparable types")
     func testStringValues() {
-        let heap = Heap<String>(isHigherPriority: <)
+        let heap = BinaryHeap<String>(isHigherPriority: <)
 
         ["delta", "alpha", "charlie", "bravo"].forEach { heap.push($0) }
 
@@ -135,14 +135,14 @@ struct Problem37_1Tests {
 
     @Test("Problem 37.1 - heap uses provided priority closure")
     func testCustomPriorityClosure() {
-        let heap = Heap<Int> { abs($0) < abs($1) }
+        let heap = BinaryHeap<Int> { abs($0) < abs($1) }
 
         [10, -1, 5, -2, 7].forEach { heap.push($0) }
 
         #expect(popAll(from: heap) == [-1, -2, 5, 7, 10])
     }
 
-    private func popAll<T>(from heap: Heap<T>) -> [T] {
+    private func popAll<T>(from heap: BinaryHeap<T>) -> [T] {
         var values: [T] = []
 
         while let value = heap.pop() {

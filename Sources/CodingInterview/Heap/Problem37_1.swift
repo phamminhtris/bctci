@@ -2,7 +2,7 @@
 Basic heap implementation
 */
 
-final class Heap<T: Comparable> {
+final class BinaryHeap<T: Comparable> {
     let isHigherPriority: (T, T) -> Bool
     var storage: [T] = []
 
@@ -73,7 +73,7 @@ final class Heap<T: Comparable> {
     }
 }
 
-extension Heap {
+extension BinaryHeap {
     private func parent(of idx: Int) -> Int? {
         guard idx != 0 else { return nil }
         return (idx - 1) / 2
