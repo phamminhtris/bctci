@@ -29,11 +29,10 @@ import Foundation
 import Collections
 
 func kSmallest(_ nums: [Int], k: Int) -> [Int] {
-    var heap = Heap<Int>(nums)
+    var heap = Collections.Heap<Int>(nums)
     while heap.count > k {
         _ = heap.popMax()
     }
     return heap.unordered
 }
-
 
