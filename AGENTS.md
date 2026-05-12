@@ -16,6 +16,9 @@ These instructions apply to everything under `/Users/tri/Developer/CodingIntervi
 - Preserve existing file organization and naming.
 - Do not add new dependencies unless explicitly requested.
 
+## Skills
+- For Swift data-structure complexity, internals, or collection-choice questions, use `.agents/skills/swift-data-structures-expert/SKILL.md`.
+
 ## Swift Guidelines
 - Use clear, interview-friendly solutions.
 - Favor readable O(n)/O(log n) approaches and mention tradeoffs when relevant.
