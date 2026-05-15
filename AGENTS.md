@@ -16,6 +16,10 @@ These instructions apply to everything under `/Users/tri/Developer/CodingIntervi
 - Preserve existing file organization and naming.
 - Do not add new dependencies unless explicitly requested.
 
+## Tooling
+- When asked to create/scaffold a new problem and matching test file, use `Scripts/generate-problem.sh <DirectoryName> <ProblemID>`.
+- The script accepts IDs like `38_2`, `Problem38_2`, or `Problem38_2.swift` and creates both source and test files.
+
 ## Skills
 - For Swift data-structure complexity, internals, or collection-choice questions, use `.agents/skills/swift-data-structures-expert/SKILL.md`.
 
