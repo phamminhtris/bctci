@@ -12,6 +12,7 @@ These instructions apply to everything under `/Users/tri/Developer/CodingIntervi
 ## Working Rules
 - Keep responses concise.
 - Default to explanation-only debugging/review; do not modify code unless explicitly requested.
+- CRITICAL: Do not implement real solution logic unless explicitly requested by the user.
 - Prefer small, focused changes over broad refactors.
 - Preserve existing file organization and naming.
 - Do not add new dependencies unless explicitly requested.
