@@ -20,19 +20,17 @@ Each element in sales is a non-negative integer less than 10^3
 */
 
 func mostWeeklySales(sales: [Int]) -> Int {
-    if sales.count < 7 { 
-        return 0
-    }
+    guard sales.count >= 7 else { return 0 }
 
-    var l = 0, r  = 0
-    var sum = 0
+    var currentSum = 0
     var maxSale = 0
+    var l = 0, r = 0 
     while r < sales.count {
-        sum += sales[r]
+        currentSum += sales[r]
         r += 1
         if r - l == 7 {
-            maxSale = max(sum, maxSale)
-            sum -= sales[l]
+            maxSale = max(maxSale, currentSum)
+            currentSum -= sales[l]
             l += 1
         }
     }
