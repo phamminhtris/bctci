@@ -60,3 +60,19 @@ func hasSameBestSellerPeriod(in bestSellers: [String], days k: Int) -> Bool {
     }
     return false
 }
+
+func hasSameBestSellerPeriodWithResettingWindow(in bestSellers: [String], days k: Int) -> Bool {
+    var r = 0, l = 0
+    while r < bestSellers.count {
+        let canGrow = r == 0 || bestSellers[l] == bestSellers[r] 
+        if canGrow {
+            r += 1
+            if r - l == k {
+                return true
+            }
+        } else {
+            l = r 
+        }
+    }
+    return false
+}

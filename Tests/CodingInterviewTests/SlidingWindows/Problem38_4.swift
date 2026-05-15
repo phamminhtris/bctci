@@ -50,6 +50,12 @@ struct Problem38_4Tests {
                 days: testCase.days
             ) == testCase.expected
         )
+        #expect(
+            hasSameBestSellerPeriodWithResettingWindow(
+                in: testCase.bestSellers,
+                days: testCase.days
+            ) == testCase.expected
+        )
     }
 
     @Test(
@@ -80,6 +86,12 @@ struct Problem38_4Tests {
     func testNoSameBestSellerPeriod(testCase: TestCase) {
         #expect(
             hasSameBestSellerPeriod(
+                in: testCase.bestSellers,
+                days: testCase.days
+            ) == testCase.expected
+        )
+        #expect(
+            hasSameBestSellerPeriodWithResettingWindow(
                 in: testCase.bestSellers,
                 days: testCase.days
             ) == testCase.expected
