@@ -20,8 +20,10 @@ These instructions apply to everything under `/Users/tri/Developer/CodingIntervi
 ## Tooling
 - When asked to create/scaffold a new problem and matching test file, use `Scripts/generate-problem.sh <DirectoryName> <ProblemID>`.
 - The script accepts IDs like `38_2`, `Problem38_2`, or `Problem38_2.swift` and creates both source and test files.
+- When a prompt, tests, and stub are available, pass generated temp files with `--prompt-file`, `--stub-file`, and `--test-body-file`.
 
 ## Skills
+- For new problem scaffolding from a prompt, use `.agents/skills/problem-scaffolder/SKILL.md`.
 - For Swift data-structure complexity, internals, or collection-choice questions, use `.agents/skills/swift-data-structures-expert/SKILL.md`.
 
 ## Swift Guidelines
