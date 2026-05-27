@@ -46,4 +46,16 @@ struct Problem39_1Tests {
     func testMaximumPathSum(testCase: TestCase) {
         #expect(maximumPathSum(in: testCase.grid) == testCase.expected)
     }
+
+    @Test("Problem 39.1 - handles a larger grid")
+    func testMaximumPathSumWithLargerGrid() {
+        let size = 10
+        let grid = (0..<size).map { row in
+            (0..<size).map { column in
+                row == 0 || column == size - 1 ? 10 : 1
+            }
+        }
+
+        #expect(maximumPathSum(in: grid) == 190)
+    }
 }

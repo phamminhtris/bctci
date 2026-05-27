@@ -20,23 +20,21 @@ Constraints:
 */
 
 func maximumPathSum(in grid: [[Int]]) -> Int {
-    var maxPath = 0
     let numRow = grid.count
     let numCol = grid[0].count
-    func visit(r: Int, c: Int, currentSum: Int) {
-        if r == numRow - 1 && c == numCol - 1 { 
-            // bottom right cell 
-            maxPath = max(currentSum + grid[r][c], maxPath)
-        } else {
-            let newSum = currentSum + grid[r][c]
-            if r + 1 < numRow {
-                visit(r: r + 1, c: c, currentSum: newSum)
-            }
-            if c + 1 < numCol {
-                visit(r: r, c: c + 1, currentSum: newSum)
+    var cache = [[Int]](repeating: Array<Int>(repeating: 0, count: numCol), count: numRow)
+    for r in 0..<numRow { 
+        for c in 0..<numCol {
+            if r == 0 && c == 0 {
+                cache[r][c] = grid[r][c]
+            } else if r == 0 { 
+                cache[r][c] = cache[r][c - 1] + grid[r][c]
+            } else if c == 0 {
+                cache[r][c] = cache[r - 1][c] + grid[r][c]
+            } else {
+                cache[r][c] = grid[r][c] + max(cache[r - 1][c], cache[r][c - 1]) 
             }
         }
     }
-    visit(r: 0, c: 0, currentSum: 0)
-    return maxPath
+    return cache[numRow - 1][numCol - 1]
 }
