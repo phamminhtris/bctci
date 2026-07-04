@@ -36,7 +36,7 @@ func isReversedCaseMatch(_ s: String) -> Bool {
     let letters = Array(s)
     var l = 0, r = letters.count - 1
 
-    while l < r {
+    while l < letters.count && r >= 0 {
         if !letters[l].isLowercase {
             l += 1
         } else if !letters[r].isUppercase {
