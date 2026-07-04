@@ -14,6 +14,9 @@ struct Problem27_5Tests {
             TestCase(s: "BbbB", expected: true),
             TestCase(s: "cTaAtC", expected: true),
             TestCase(s: "", expected: true),
+            TestCase(s: "aA", expected: true),
+            TestCase(s: "Aa", expected: true),
+            TestCase(s: "abBA", expected: true),
         ]
     )
     func testMatches(testCase: TestCase) {
@@ -25,6 +28,8 @@ struct Problem27_5Tests {
         arguments: [
             TestCase(s: "haHrARDd", expected: false),
             TestCase(s: "cTaCtA", expected: false),
+            TestCase(s: "abAB", expected: false),
+            TestCase(s: "helloworldHELLOWORLD", expected: false),
         ]
     )
     func testMismatches(testCase: TestCase) {
