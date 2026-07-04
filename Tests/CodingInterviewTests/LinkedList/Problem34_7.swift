@@ -2,7 +2,6 @@ import Testing
 
 @testable import CodingInterview
 
-@Suite(.disabled("In progress — reverseBetween is still a stub"))
 struct Problem34_7Tests {
     struct TestCase {
         let input: [Int]
