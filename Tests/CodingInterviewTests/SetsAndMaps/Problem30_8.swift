@@ -24,6 +24,7 @@ You are also given an array, students, of students' answers for the test. Each e
 Two students are considered suspect if they have made identical mistakes (matching correct scores are not suspicious) and sit next to each other in the same row we don't care about students in the front or behind one another).
 Return a list of all pairs of suspect students in any order (the order of the two students in a pair also doesn't matter).
 */
+@Suite(.disabled("In progress — suspectStudents is still a stub"))
 struct Problem30_8Tests {
 
 	struct TestCase {

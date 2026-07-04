@@ -39,11 +39,17 @@ These instructions apply to everything under `/Users/tri/Developer/CodingIntervi
 - Prefer parameterized tests when multiple scenarios share the same assertion pattern.
 - Do not force all scenarios into one parameterized test; split into multiple parameterized tests when behaviors differ.
 - Include edge cases that still satisfy the stated problem constraints.
+- When a problem is paused mid-solve (stub implementation), mark its suite `@Suite(.disabled("In progress — <reason>"))` so `swift test` stays green; remove the trait when resuming.
 - Prefer running scoped tests first:
   - `swift test --filter Problem32_2Tests`
 - Run full suite when practical:
   - `swift test`
 - If unrelated tests fail, call that out clearly and do not mask it.
+
+## Practice Tracking
+- `PROGRESS.md` at the repo root tracks per-problem status, confidence, and redo flags.
+- When a problem is completed or its status changes, offer to update its row.
+- At the start of a practice session, check `PROGRESS.md` for 🚧 and 🔁 rows before suggesting new problems.
 
 ## Review Focus
 When asked for review, prioritize:
