@@ -26,7 +26,7 @@ func maxSubarraySum(in array: [Int]) -> Int {
         return maxValue
     }
 
-    var r = 0, l = 0 
+    var r = 0
     var maxSum = 0
     var currentSum = 0
     while r < array.count {
@@ -37,7 +37,6 @@ func maxSubarraySum(in array: [Int]) -> Int {
             r += 1
         } else {
             r += 1
-            l = r
             currentSum = 0
         }
     }

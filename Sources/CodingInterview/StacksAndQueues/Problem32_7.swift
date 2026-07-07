@@ -39,7 +39,7 @@ func balanceCustomBrackets(s: String, brackets: [String]) -> Bool {
                 stack.append(char)
             } else {
                 if stack.last == matching {
-                    stack.popLast()
+                    _ = stack.popLast()
                 } else {
                     return false
                 }
