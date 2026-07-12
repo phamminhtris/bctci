@@ -2,6 +2,12 @@ import Testing
 @testable import CodingInterview
 
 struct Problem28_2Tests {
+    /// Both implementations must agree with `expected` on every case.
+    private func expectBothImplementations(board: [[Int]], equal expected: [[Int]]) {
+        #expect(queensReach(board: board) == expected)
+        #expect(queensReachOptimized(board: board) == expected)
+    }
+
     @Test("Examples from the prompt", arguments: [
         // Queens on the two opposite corners of the anti-diagonal.
         (board: [[0, 0, 0, 1],
@@ -18,7 +24,7 @@ struct Problem28_2Tests {
         (board: [[0]], expected: [[0]]),
     ])
     func promptExamples(board: [[Int]], expected: [[Int]]) {
-        #expect(queensReach(board: board) == expected)
+        expectBothImplementations(board: board, equal: expected)
     }
 
     @Test("Single queen covers its row, column, and both diagonals", arguments: [
@@ -42,7 +48,7 @@ struct Problem28_2Tests {
         (board: [[0, 0, 1, 0, 0]], expected: [[1, 1, 1, 1, 1]]),
     ])
     func singleQueenCoverage(board: [[Int]], expected: [[Int]]) {
-        #expect(queensReach(board: board) == expected)
+        expectBothImplementations(board: board, equal: expected)
     }
 
     @Test("Boards with no safe cells or all safe cells", arguments: [
@@ -64,7 +70,7 @@ struct Problem28_2Tests {
                     [0, 0, 0]]),
     ])
     func saturatedAndEmptyBoards(board: [[Int]], expected: [[Int]]) {
-        #expect(queensReach(board: board) == expected)
+        expectBothImplementations(board: board, equal: expected)
     }
 
     @Test("Multiple queens combine their coverage")
@@ -81,7 +87,7 @@ struct Problem28_2Tests {
                         [1, 1, 1, 1, 1],
                         [1, 1, 1, 1, 1],
                         [0, 1, 0, 1, 1]]
-        #expect(queensReach(board: board) == expected)
+        expectBothImplementations(board: board, equal: expected)
     }
 
     @Test("Large board with a single queen keeps distant cells safe")
@@ -89,12 +95,13 @@ struct Problem28_2Tests {
         let n = 100
         var board = Array(repeating: Array(repeating: 0, count: n), count: n)
         board[0][0] = 1
-        let result = queensReach(board: board)
-        #expect(result[0][0] == 1)
-        #expect(result[0][99] == 1)
-        #expect(result[99][0] == 1)
-        #expect(result[99][99] == 1)
-        #expect(result[1][2] == 0)
-        #expect(result[98][99] == 0)
+        for result in [queensReach(board: board), queensReachOptimized(board: board)] {
+            #expect(result[0][0] == 1)
+            #expect(result[0][99] == 1)
+            #expect(result[99][0] == 1)
+            #expect(result[99][99] == 1)
+            #expect(result[1][2] == 0)
+            #expect(result[98][99] == 0)
+        }
     }
 }

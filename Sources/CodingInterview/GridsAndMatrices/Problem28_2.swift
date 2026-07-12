@@ -57,11 +57,55 @@ func markUnsafe(board: inout [[Int]], r: Int, c: Int) {
     for (offsetR, offsetC) in directionOffset {
         var nr = r + offsetR
         var nc = c + offsetC
-        while nr >= 0 && nr < board.count 
+        while nr >= 0 && nr < board.count
             && nc >= 0 && nc < board[0].count {
                 board[nr][nc] = 1
-                nr = nr + offsetR 
+                nr = nr + offsetR
                 nc = nc + offsetC
         }
     }
+}
+
+/// Same result as `queensReach`, but O(rows * cols) instead of walking a ray
+/// out of every queen (which is O(rows * cols * n) on a queen-heavy board).
+///
+/// A cell is unsafe exactly when it shares a row, a column, or one of the two
+/// diagonals with some queen. Blocking never changes that: if queen A's ray to
+/// cell C is blocked by queen B, then B lies on the same line between them, so
+/// B — or the last queen before C — reaches C itself. So we only need to know
+/// *which lines hold a queen*, never how far each queen actually travels.
+/// Each cell sits on exactly one "\" diagonal and one "/" diagonal, and each of
+/// those has a natural name: stepping along a "\" keeps `r - c` constant, and
+/// stepping along a "/" keeps `r + c` constant. So a queen at (r, c) "owns" row
+/// r, column c, diagonal `r - c`, and anti-diagonal `r + c` — and a cell is
+/// unsafe exactly when it lands on a line some queen owns.
+func queensReachOptimized(board: [[Int]]) -> [[Int]] {
+    let rows = board.count
+    guard rows > 0, let cols = board.first?.count, cols > 0 else { return board }
+
+    var rowsWithQueen = Set<Int>()
+    var columnsWithQueen = Set<Int>()
+    var diagonalsWithQueen = Set<Int>()      // named by r - c
+    var antiDiagonalsWithQueen = Set<Int>()  // named by r + c
+
+    for r in 0..<rows {
+        for c in 0..<cols where board[r][c] == 1 {
+            rowsWithQueen.insert(r)
+            columnsWithQueen.insert(c)
+            diagonalsWithQueen.insert(r - c)
+            antiDiagonalsWithQueen.insert(r + c)
+        }
+    }
+
+    var res = board
+    for r in 0..<rows {
+        for c in 0..<cols {
+            let isUnsafe = rowsWithQueen.contains(r)
+                || columnsWithQueen.contains(c)
+                || diagonalsWithQueen.contains(r - c)
+                || antiDiagonalsWithQueen.contains(r + c)
+            res[r][c] = isUnsafe ? 1 : 0
+        }
+    }
+    return res
 }
