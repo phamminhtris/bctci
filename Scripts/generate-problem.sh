@@ -132,7 +132,7 @@ test_type_name="${problem_name}Tests"
 source_directory="$repo_root/Sources/CodingInterview/$directory_name"
 test_directory="$repo_root/Tests/CodingInterviewTests/$directory_name"
 source_file="$source_directory/$problem_name.swift"
-test_file="$test_directory/$problem_name.swift"
+test_file="$test_directory/$test_type_name.swift"
 
 if [[ -e "$source_file" || -e "$test_file" ]]; then
     echo "Refusing to overwrite because a target file already exists:" >&2

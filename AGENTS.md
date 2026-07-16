@@ -8,6 +8,7 @@ These instructions apply to everything under `/Users/tri/Developer/CodingIntervi
 - Source code lives in `Sources/CodingInterview/*`.
 - Tests live in `Tests/CodingInterviewTests/*`.
 - Naming follows problem IDs, e.g. `Problem32_2.swift`.
+- Test files add a `Tests` suffix and match their suite type, e.g. `Problem32_2Tests.swift` holds `struct Problem32_2Tests`. This keeps a filename search for `Problem32_2.swift` unambiguous.
 
 ## Working Rules
 - Keep responses concise.
