@@ -33,6 +33,36 @@ func spiralGrid(n: Int) -> [[Int]] {
     precondition(n > 0 && n < 1000, "n must satisfy 0 < n < 1000")
     precondition(n % 2 == 1, "n must be odd")
 
-    // Stub: correct shape, no spiral logic yet.
-    return Array(repeating: Array(repeating: 0, count: n), count: n)
+    let unvisited = -1
+    var res = Array(repeating: Array(repeating: unvisited, count: n), count: n)
+    let directions = [
+        (dr: -1, dc: 0), // up
+        (dr: 0, dc: -1), // left
+        (dr: 1, dc: 0), // down
+        (dr: 0, dc: 1) // right
+    ]
+    var directionIndex = 0
+
+    func canVisit(r: Int, c: Int) -> Bool {
+        r >= 0 && r < n && c >= 0 && c < n && res[r][c] == unvisited
+    }
+
+    // Walk the spiral in reverse: start at the bottom-right holding the largest
+    // value and step inward, so the walk finishes on the center holding 0.
+    var r = n - 1
+    var c = n - 1
+    for current in stride(from: n * n - 1, through: 1, by: -1) {
+        res[r][c] = current
+        var (dr, dc) = directions[directionIndex]
+        // The spiral never doubles back, so one turn always finds the next cell.
+        if !canVisit(r: r + dr, c: c + dc) {
+            directionIndex = (directionIndex + 1) % directions.count
+            (dr, dc) = directions[directionIndex]
+        }
+        r += dr
+        c += dc
+    }
+    res[n / 2][n / 2] = 0
+
+    return res
 }
